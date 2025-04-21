@@ -12,3 +12,10 @@ start-api:
 	python -m tracker.api
 lint:
 	black .
+install-all:
+	make install
+	make install-dev
+install:
+	pip install -r requirements.txt
+install-dev:
+	pip install -r requirements-dev.txt
