@@ -1,2 +1,5 @@
 requests
 click
+fastapi
+pydantic-settings
+uvicorn

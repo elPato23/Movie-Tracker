@@ -20,4 +20,8 @@ __all__ = [
     "MovieShowAdapter",
     "MovieLength",
     "Show",
+    "query",
+    "cli",
+    "config",
+    "api",
 ]
