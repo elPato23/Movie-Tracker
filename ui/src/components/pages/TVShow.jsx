@@ -138,11 +138,11 @@ export default function TVShow(props) {
           </select>
         </h2>
         {searchBar}
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-between space-between ml-2">
           {shows.map((show, index) => {
             return (
               <Show
-                className="m-2 xl:w-[20%] md:mx-1 md:w-[48%] sm:w-full"
+                className="m-4 xl:w-[23%] md:mx-1 md:w-[48%] sm:w-full"
                 key={index}
                 {...show}
               />
