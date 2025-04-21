@@ -1,0 +1,420 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/pbSdwutAVywzxtx2KEoYHEwOO0h.jpg",
+            "genre_ids": [
+                16,
+                10765,
+                10759,
+                18
+            ],
+            "id": 95557,
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "INVINCIBLE",
+            "overview": "Mark Grayson is a normal teenager except for the fact that his father is the most powerful superhero on the planet. Shortly after his seventeenth birthday, Mark begins to develop powers of his own and enters into his father’s tutelage.",
+            "popularity": 112.587,
+            "poster_path": "/jBn4LWlgdsf6xIUYhYBwpctBVsj.jpg",
+            "first_air_date": "2021-03-25",
+            "name": "INVINCIBLE",
+            "vote_average": 8.637,
+            "vote_count": 4911
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/3duKyx2HVil4N1ZVeGduZwAerNv.jpg",
+            "genre_ids": [
+                35
+            ],
+            "id": 32391,
+            "origin_country": [
+                "KR"
+            ],
+            "original_language": "ko",
+            "original_name": "청춘불패",
+            "overview": "Various girls from K-pop idol groups experience how it is to live and survive in the Korean rural outdoors.",
+            "popularity": 10.6217,
+            "poster_path": "/4tnWYVvpU1sgfKF43QlJRNQ1vdQ.jpg",
+            "first_air_date": "2009-10-23",
+            "name": "Invincible Youth",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [
+                16
+            ],
+            "id": 24989,
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Invincible",
+            "overview": "Every kid wants superpowers. But not every kid's father is Omni-Man, the greatest superhero the world has ever known.",
+            "popularity": 1.2276,
+            "poster_path": null,
+            "first_air_date": "2008-07-21",
+            "name": "Invincible",
+            "vote_average": 7,
+            "vote_count": 2
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/gLZyORty87ranTMUXCB4VpuhPkZ.jpg",
+            "genre_ids": [
+                18
+            ],
+            "id": 7879,
+            "origin_country": [
+                "HK"
+            ],
+            "original_language": "cn",
+            "original_name": "仁者無敵",
+            "overview": "\"Bei Zheng\" is an honest and upright hero who seeks to help others. He operates a clinic in the small town of Pu Ren Lane, with the help of assistants like \"Lu Cheng,\" \"Lü Ren,\" and \"Mao Shi Jun.\" His friend's son, \"Fong Chun,\" comes to learn from him and becomes an invaluable aide. The owner of the inn who rents out a storefront to \"Bei Zheng\" is infatuated with him, but he only has eyes for \"Bai Su Yi\". \"Fong Chun\" initially dislikes living with \"Bei Zheng\" but eventually sees the value in his work and learns from him. He abandons his career as a royal physician to follow \"Bei Zheng's\" aspirations. \"Fong Chun\" was initially engaged to \"Bai Jing Wen,\" but he falls in love with \"Xiao Qian,\" a prostitute. Their love affair leads to a tragic end when \"Xiao Qian\" is killed by \"Bai Jing Wen.\"",
+            "popularity": 1.1869,
+            "poster_path": "/lms4lfcmo2RPXip1ffAnxhAeZ7f.jpg",
+            "first_air_date": "1980-07-21",
+            "name": "Invincible Medic",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/7erzUw7A0XbJOVl7FrfWphsGCu5.jpg",
+            "genre_ids": [
+                10759,
+                35,
+                18
+            ],
+            "id": 68042,
+            "origin_country": [
+                "KR"
+            ],
+            "original_language": "ko",
+            "original_name": "무적의 낙하산 요원",
+            "overview": "Choi Kang is a high school dropout with no goals and no future. Until one day he finds himself recruited into the elite Korea Secret Agency...",
+            "popularity": 1.0574,
+            "poster_path": "/phFkwkU0s6ouvrdH12gtwzvXE6V.jpg",
+            "first_air_date": "2006-09-06",
+            "name": "Invincible Parachute Agent",
+            "vote_average": 6.5,
+            "vote_count": 2
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/buvIdlOEkNZMginO3viV0aRNI0P.jpg",
+            "genre_ids": [
+                18
+            ],
+            "id": 61542,
+            "origin_country": [
+                "RS"
+            ],
+            "original_language": "sr",
+            "original_name": "Непобедиво срце",
+            "overview": "Set in the 1930s, the series is about the impossible love between a poor young man from the province, an unemployed law graduate and a talented singer, and the rich and sensitive heiress of a bank manager and owner.",
+            "popularity": 1.2148,
+            "poster_path": "/bHgBv4rZBn0PhF2goF3VfeKWBUt.jpg",
+            "first_air_date": "2011-10-16",
+            "name": "The Invincible Heart",
+            "vote_average": 6.5,
+            "vote_count": 2
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/2jI150jaRHkGPTX1CWfe9JOTK5I.jpg",
+            "genre_ids": [],
+            "id": 109257,
+            "origin_country": [
+                "HK"
+            ],
+            "original_language": "cn",
+            "original_name": "劍魔獨孤求敗",
+            "overview": "",
+            "popularity": 1.9526,
+            "poster_path": "/blhZkqQTo17eFoYIDUD0D9CteRc.jpg",
+            "first_air_date": "1990-09-10",
+            "name": "The Legend of The Invincible",
+            "vote_average": 7,
+            "vote_count": 1
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/vRcbrnNjCg98AOdGcHEnyJgb1BK.jpg",
+            "genre_ids": [
+                10759,
+                18,
+                10751
+            ],
+            "id": 244316,
+            "origin_country": [
+                "TH"
+            ],
+            "original_language": "th",
+            "original_name": "มือปราบมหาอุตม์",
+            "overview": "In a time of great famine and chaos after the World War II, there is an increase in robberies and looting, where police enforcement is futile against the bandits. Both the bandits and the police turn to magic for self-protection. Two brothers are separated as children and thrown into two different worlds – the dark, seedy world of the bandits and the other under the wing of the lawman, only to be reunited years later as enemies, where circumstances force them to fight each other, but for the same cause - to right the wrong and avenge the death of their father. Krathing, a vigilante in an officer's uniform, is the rival of Mai, a saint in bandit garb who steals from the rich and gives to the poor. They fight not only for their duty, but also for the heart of Kamlai, the woman they both desire. Only one can be victorious.",
+            "popularity": 2.0854,
+            "poster_path": "/6V8LRgt9sdwy1S8HTCcrb2ZfQoB.jpg",
+            "first_air_date": "2024-01-22",
+            "name": "The Invincible",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ftsH38Fqr5JsYsEElIgyWB1W6VX.jpg",
+            "genre_ids": [
+                10759
+            ],
+            "id": 107977,
+            "origin_country": [
+                "HK"
+            ],
+            "original_language": "cn",
+            "original_name": "白髮魔女傳",
+            "overview": "",
+            "popularity": 3.1197,
+            "poster_path": "/nHynwEzdgU6f01EvQX1KQxiHz7c.jpg",
+            "first_air_date": "1986-06-09",
+            "name": "The Invincible Snowy Hair Maiden",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/zSsy4M7oSidFlY9wg707j4qOULj.jpg",
+            "genre_ids": [
+                10768,
+                10759
+            ],
+            "id": 203228,
+            "origin_country": [
+                "CN"
+            ],
+            "original_language": "zh",
+            "original_name": "信者无敌",
+            "overview": "",
+            "popularity": 2.7802,
+            "poster_path": "/c8xRmYwoSkfWuvMKFBVAsnwEr2a.jpg",
+            "first_air_date": "2016-08-31",
+            "name": "Invincible Belief",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/yG5ZuJ2FVusXR6v6oCNnRoMUPzQ.jpg",
+            "genre_ids": [
+                16,
+                10759
+            ],
+            "id": 71922,
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "無敵鋼人ダイターン3",
+            "overview": "Brilliant scientist Sōzō Haran was conducting research on Mars when he created the Meganoids, a new form of cyborg life capable of metacognition. Suddenly Dr. Haran lost control of his creation as the Meganoids slaughtered him and his entire family,  save his youngest son, the 16-year-old Banjō Haran. Banjō escaped from Mars on a rocket ship with Daitarn 3, a solar-powered super robot. Now 18 years old and living on Earth, Banjō fights against the Meganoids and their leader, Don Zauser. Banjō must gather allies to help him stop the Meganoid threat, which aspires to turn all humans into cyborgs and \"improve\" the human race.",
+            "popularity": 6.4252,
+            "poster_path": "/jEr2olEf7ypfKafHrAM9HMYMDHL.jpg",
+            "first_air_date": "1978-06-03",
+            "name": "Invincible Steel Man Daitarn 3",
+            "vote_average": 8.1,
+            "vote_count": 13
+        },
+        {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [
+                35,
+                18
+            ],
+            "id": 4748,
+            "origin_country": [
+                "CA"
+            ],
+            "original_language": "fr",
+            "original_name": "Les Invincibles",
+            "overview": "Les Invincibles is a comedy/drama television series from Radio-Canada produced by Casablanca Productions and Alliance Atlantis Vivafilm.\n\nThe story is about four twenty-something men signing a pact ordaining the simultaneous break-up of their current relationships, and the subsequent adoption of a common responsibility-free life.\n\nIn 2006, the show won an \"Olivier\" for best drama series.\n\nThe third and last season ended on March 25, 2009.\n\nA remake of the series was made in France. Filming began in Strasbourg in August 2008 and the show was broadcast on the Franco-German Arte network in Fall 2009.",
+            "popularity": 4.036,
+            "poster_path": "/jVe7Jtx6fcowLpDXt49u5vdzoLl.jpg",
+            "first_air_date": "2005-09-14",
+            "name": "Les Invincibles",
+            "vote_average": 8.2,
+            "vote_count": 9
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/1Jz9C5BOIjKPEWhm3zWcpDHJ0TT.jpg",
+            "genre_ids": [
+                10759,
+                16,
+                10765
+            ],
+            "id": 250598,
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "新米オッサン冒険者、最強パーティに死ぬほど鍛えられて無敵になる。",
+            "overview": "Normally, people choose to become adventurers in their teens. At 30 years old, Rick Gladiator bucks the trend by leaving his job as a guild clerk to become an adventurer. He begins as a novice F-rank with the fighting strength of an S-rank. After two years of brutal training with the continent’s strongest party, Orichalcum Fist, Rick will defeat anyone who underestimates him!",
+            "popularity": 7.7867,
+            "poster_path": "/dHxGWlygSNRb97wujSwtEts5snP.jpg",
+            "first_air_date": "2024-07-02",
+            "name": "The Ossan Newbie Adventurer, Trained to Death by the Most Powerful Party, Became Invincible",
+            "vote_average": 8.188,
+            "vote_count": 48
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/JrUcHRKYL0IgUvx6KeNLPbbJiz.jpg",
+            "genre_ids": [
+                16,
+                10759
+            ],
+            "id": 238975,
+            "origin_country": [
+                "CN"
+            ],
+            "original_language": "zh",
+            "original_name": "十方武圣",
+            "overview": "The world was in disarray and the people were in grave difficulties in the desolation of Doomsday, the third year of King Shizong's rule. The Demon Gate Demon Party lurks in the shadows, wreaking havoc. The gangs attack each other, causing mayhem. Various sects developed one after the other in the pandemonium, battling for resources and territory and establishing their own control. There are ambitious people who want to rule the globe and create a dynasty, and there are good people who wish to help the common people. Wei He carries the realm-breaking bead, which allows him to travel through tumultuous periods and construct his own mythology step by step.(Bstation)",
+            "popularity": 1.5088,
+            "poster_path": "/mROojWv1lf673VraI84lcj9PQrC.jpg",
+            "first_air_date": "2023-11-10",
+            "name": "The Invincible",
+            "vote_average": 8.5,
+            "vote_count": 2
+        },
+        {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [
+                35,
+                18
+            ],
+            "id": 7780,
+            "origin_country": [
+                "TW"
+            ],
+            "original_language": "zh",
+            "original_name": "Invincible Shan Bao Mei",
+            "overview": "Invincible Shan Bao Mei, also known as 我愛珊寶妹 / Woody Sambo is a romantic comedy Taiwanese Drama starring Nicholas Teo and Amber Kuo. It premiered on August 24, 2008, right after the half-episode conclusion of Fated To Love You. The peak point of 10.57 occurred during the commercial-free transition from Fated to Love You to Invincible Shan Bao Mei. Its first episode had an average rating of 7.25.",
+            "popularity": 4.4324,
+            "poster_path": null,
+            "first_air_date": "2008-08-24",
+            "name": "Invincible Shan Bao Mei",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8KYhV8Qbf1wjfSHTLnB6W7OEp8g.jpg",
+            "genre_ids": [
+                35
+            ],
+            "id": 38489,
+            "origin_country": [
+                "FR"
+            ],
+            "original_language": "fr",
+            "original_name": "Les Invincibles",
+            "overview": "",
+            "popularity": 1.426,
+            "poster_path": "/qoFtLrkGsLOopmaNYm0hPMapSO7.jpg",
+            "first_air_date": "2010-03-09",
+            "name": "Les Invincibles",
+            "vote_average": 5.2,
+            "vote_count": 4
+        },
+        {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [
+                18
+            ],
+            "id": 206782,
+            "origin_country": [
+                "CN"
+            ],
+            "original_language": "zh",
+            "original_name": "无敌铁桥三",
+            "overview": "In late Qing-era Guangzhou, Liang Kun’s family is targeted for a secret porcelain manual, leading to his father’s murder. Years later, as he trains in porcelain-making, betrayal and tragedy resurface. After surviving a near-death experience, he masters martial arts and uncovers a web of conspiracies. Framed for murder, he must fight for justice using his self-created Iron Wire Fist.",
+            "popularity": 1.2437,
+            "poster_path": "/gpcfa6WdDk2axyfz45rcrrPze6M.jpg",
+            "first_air_date": "2014-07-24",
+            "name": "Invincible Tie Qiaosan",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/6Od9zS02pYozTMZQESwJU5mTfSy.jpg",
+            "genre_ids": [
+                16
+            ],
+            "id": 194970,
+            "origin_country": [
+                "IN"
+            ],
+            "original_language": "en",
+            "original_name": "Chakra the Invincible",
+            "overview": "",
+            "popularity": 9.7329,
+            "poster_path": "/wmBPPyZAm1HmstOaYDz2lXA0sAK.jpg",
+            "first_air_date": "2013-11-30",
+            "name": "Chakra the Invincible",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/2I4N7hwcwzYj5PSmuhgKekkygKw.jpg",
+            "genre_ids": [
+                35,
+                10765
+            ],
+            "id": 240957,
+            "origin_country": [
+                "CN"
+            ],
+            "original_language": "zh",
+            "original_name": "当家小娘子",
+            "overview": "Chi Yue is a modern-day action movie star who accidentally time travels back in time into the life of a young widow of the Li family who has a stepson and two stepdaughters. Thrust into a role completely foreign to her, she begins to get closer to her children and works hard to take care of them. She punishes the vicious relatives who dare to bully the kids. She becomes able to house, clothe, and feed the kids thanks to the successful winery and business she starts. She even teaches her eldest son to hunt and encourages her second daughter to study. In turn, the children grow to love and depend on her.  But someone is out to harm Chi Yue, causing her to fall into crisis after crisis. Will her modern-day thinking save her... or fail her?\n\n(Source: Chinese = Baidu || Translation = MyDramaList)\n\n~~ Adapted from the web novel \"Chuan Cheng Si Ge Tuo You Ping De E Du Hou Niang\" (穿成四个拖油瓶的恶毒后娘) by Chi Jin Yin (池金银).",
+            "popularity": 0.5107,
+            "poster_path": "/iPIjFiIPbgmdULtRCTPbFFdLlrB.jpg",
+            "first_air_date": "2023-12-05",
+            "name": "Invincible Stepmother",
+            "vote_average": 8,
+            "vote_count": 2
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/xO6si9VqE8ZKC4N9TNuI2ycnTP.jpg",
+            "genre_ids": [
+                10764
+            ],
+            "id": 202100,
+            "origin_country": [
+                "FR"
+            ],
+            "original_language": "fr",
+            "original_name": "Le club des invincibles",
+            "overview": "For the first time, 4 of the greatest champions of TV games are gathered on the same board. Together they form the Club des Invincibles. In front of them, 10 personalities, each specialist in a field, will do everything to try to beat them!",
+            "popularity": 1.2154,
+            "poster_path": "/hNXxcTM7VOQ5C3l4WIHEKwEW79k.jpg",
+            "first_air_date": "2021-06-05",
+            "name": "The Chase France",
+            "vote_average": 0,
+            "vote_count": 0
+        }
+    ],
+    "total_pages": 3,
+    "total_results": 44
+}
