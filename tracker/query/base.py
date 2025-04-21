@@ -3,6 +3,23 @@ import time
 
 import requests
 
+from typing import Generic, TypeVar, TypedDict
+from enum import Enum
+
+TResponse = TypeVar("TResponse", bound=dict)
+
+
+class TrendingTimeframe(str, Enum):
+    DAY = "day"
+    WEEK = "week"
+
+
+class APIPage(Generic[TResponse], TypedDict):
+    page: int
+    results: list[TResponse]
+    total_pages: int
+    total_results: int
+
 
 class TVMovieDB:
     def __init__(self) -> None:

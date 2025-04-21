@@ -1,7 +1,71 @@
-from typing import Literal
+from typing import Literal, TypedDict
 
-from tracker.query.base import TVMovieDB
+from tracker.query.base import TVMovieDB, APIPage, TrendingTimeframe
 from tracker.query.model import Show, TVShowLength
+
+
+class TVShowReferenceDict(TypedDict):
+    # This is from the TMDB API
+    adult: bool
+    backdrop_path: str
+    genre_ids: list[int]
+    id: int
+    name: str
+    overview: str
+    origin_country: list[str]
+    original_language: str
+    original_name: str
+    popularity: float
+    poster_path: str
+    first_air_date: str
+    vote_average: float
+    vote_count: int
+
+
+class TVShowSeriesEpisodeDict(TypedDict):
+    id: int
+    name: str
+    overview: str
+    vote_average: float
+    vote_count: int
+    air_date: str
+    episode_number: int
+    episode_type: str
+    production_code: str
+    runtime: int
+    season_number: int
+    show_id: int
+    still_path: str
+
+
+class TVShowSeriesNetworkDict(TypedDict):
+    id: int
+    logo_path: str
+    name: str
+    origin_country: str
+
+
+class GenreDict(TypedDict):
+    id: int
+    name: str
+
+
+class TVShowSeriesDict(TypedDict):
+    adult: bool
+    backdrop_path: str
+    created_by: list[dict]
+    episode_run_time: list[int]
+    first_air_date: str
+    genres: list[GenreDict]
+    homepage: str
+    id: int
+    in_production: bool
+    languages: list[str]
+    last_air_date: str
+    last_episode_to_air: TVShowSeriesEpisodeDict
+    name: str
+    next_episode_to_air: TVShowSeriesEpisodeDict | None
+    networks: list[TVShowSeriesNetworkDict]
 
 
 class TelevisionDB(TVMovieDB):
@@ -9,7 +73,9 @@ class TelevisionDB(TVMovieDB):
         response = self.request("/genre/tv/list", params={"language": "en-US"})
         return response
 
-    def search(self, query: str, include_adult: bool = False) -> dict:
+    def search(
+        self, query: str, include_adult: bool = False
+    ) -> APIPage[TVShowReferenceDict]:
         response = self.request(
             "/search/tv",
             params={
@@ -21,14 +87,16 @@ class TelevisionDB(TVMovieDB):
         )
         return response
 
-    def get_trending(self, timeframe: Literal["day", "week"]) -> dict:
+    def get_trending(
+        self, timeframe: TrendingTimeframe
+    ) -> APIPage[TVShowReferenceDict]:
         response = self.request(
             f"/trending/tv/{timeframe}",
             params={"language": "en-US"},
         )
         return response
 
-    def get_series(self, series_id: int):
+    def get_series(self, series_id: int) -> TVShowSeriesDict:
         response = self.request(f"/tv/{series_id}", params={"language": "en-US"})
         return response
 
@@ -40,7 +108,7 @@ class TVShowAdapter:
             genre["id"]: genre["name"] for genre in tv_db.get_genres()["genres"]
         }
 
-    def hydrate_tvshow(self, show_reference: dict):
+    def hydrate_tvshow(self, show_reference: TVShowReferenceDict):
         series = self.tv_db.get_series(show_reference["id"])
         return Show(
             name=show_reference["name"],
@@ -64,7 +132,7 @@ class TVShowAdapter:
             results.append(self.hydrate_tvshow(item))
         return results
 
-    def trending(self, timeframe: Literal["day", "week"]) -> list[Show]:
+    def trending(self, timeframe: TrendingTimeframe) -> list[Show]:
         page = self.tv_db.get_trending(timeframe)
         items = page["results"]
         results = []

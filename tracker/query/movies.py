@@ -1,5 +1,4 @@
-from typing import Literal
-from tracker.query.base import TVMovieDB
+from tracker.query.base import TVMovieDB, TrendingTimeframe
 
 
 class MoviesDB(TVMovieDB):
@@ -22,7 +21,7 @@ class MoviesDB(TVMovieDB):
         )
         return response
 
-    def get_trending(self, timeframe: Literal["day", "week"]) -> dict:
+    def get_trending(self, timeframe: TrendingTimeframe) -> dict:
         response = self.request(
             f"/trending/movie/{timeframe}",
             params={"language": "en-US"},
