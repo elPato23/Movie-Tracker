@@ -1,6 +1,6 @@
-from typing import Literal, TypedDict
+from typing import TypedDict
 
-from tracker.query.base import TVMovieDB, APIPage, TrendingTimeframe
+from tracker.query.base import TVMovieDB, TrendingTimeframe
 from tracker.query.model import Show, TVShowLength
 
 
@@ -20,6 +20,13 @@ class TVShowReferenceDict(TypedDict):
     first_air_date: str
     vote_average: float
     vote_count: int
+
+
+class APIPage(TypedDict):
+    page: int
+    results: list[TVShowReferenceDict]
+    total_pages: int
+    total_results: int
 
 
 class TVShowSeriesEpisodeDict(TypedDict):
@@ -73,9 +80,16 @@ class TelevisionDB(TVMovieDB):
         response = self.request("/genre/tv/list", params={"language": "en-US"})
         return response
 
-    def search(
-        self, query: str, include_adult: bool = False
-    ) -> APIPage[TVShowReferenceDict]:
+    def search(self, query: str, include_adult: bool = False) -> APIPage:
+        """Searches for TV Shows with the given name in the query
+
+        Args:
+            query (str): Search Terms to try and find shows
+            include_adult (bool, optional): Whether to include adult content. Defaults to False.
+
+        Returns:
+            APIPage[TVShowReferenceDict]: API Page object of with results of type TVShowReferenceDict
+        """
         response = self.request(
             "/search/tv",
             params={
