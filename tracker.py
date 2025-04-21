@@ -1,10 +1,11 @@
 from typing import Literal
-import requests
 from dataclasses import dataclass
 from functools import cached_property
 from datetime import timedelta
 import time
 import os
+
+import requests
 
 
 class TVMovieDB:
