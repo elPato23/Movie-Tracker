@@ -77,7 +77,7 @@ def get_trending_tv_shows(
     return {"results": [asdict(show) for show in trending_shows]}
 
 
-@api_router.get("/tv/search/", response_model=Page[Show])
+@api_router.get("/tv/search", response_model=Page[Show])
 def get_trending_tv_shows(
     query: str = Query(),
     adapter: TVShowAdapter = Depends(tv_adapter),

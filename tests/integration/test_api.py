@@ -64,7 +64,7 @@ def test_api__when_calling_tv_search_endpoint_and_results_found__returns_results
     ]
 
     response = api_client.get("/api/tv/search", params={"query": "One Piece"})
-    assert response.status_code == 200
+    assert response.status_code == 200, response.text
     data = response.json()
     expected = {
         "results": [
@@ -78,6 +78,8 @@ def test_api__when_calling_tv_search_endpoint_and_results_found__returns_results
                     "episodes": 1317,
                 },
                 "networks": ["Funimation", "Crunchyroll"],
+                "banner": None,
+                "poster": None,
             }
         ]
     }
@@ -113,6 +115,8 @@ def test_api__when_calling_tv_trending_endpoint_with_day_and_results_found__retu
                     "episodes": 1317,
                 },
                 "networks": ["Funimation", "Crunchyroll"],
+                "banner": None,
+                "poster": None,
             }
         ]
     }
@@ -161,6 +165,8 @@ def test_api__when_calling_tv_trending_endpoint_with_week_and_results_found__ret
                     "episodes": 1317,
                 },
                 "networks": ["Funimation", "Crunchyroll"],
+                "banner": None,
+                "poster": None,
             }
         ]
     }
