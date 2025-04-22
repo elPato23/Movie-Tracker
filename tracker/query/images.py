@@ -103,8 +103,18 @@ class ImageDownloader:
 
     def download(self, image: Image, path: str) -> None:
         logger.info(f"downloading image, {image} from path {path}")
+        all_local_paths = [
+            image.local_small(self.local_dir),
+            image.local_medium(self.local_dir),
+            image.local_large(self.local_dir),
+        ]
+        if all(os.path.exists(path) for path in all_local_paths):
+            logger.info("all images already exists locally")
+            return
+
         # hacky way to make sure I am not overloading the api they have
         if self.db.current_request_count >= self.db.max_requests_per_second:
+            logger.debug("Gotta chill for a second")
             self.db.current_request_count = 0
             time.sleep(1)
         self.db.current_request_count += 1
@@ -128,7 +138,7 @@ class ImageDownloader:
         logger.debug(f"working on image {temp_path}")
         # ensure image is expected ratio for its type
         scale_to_ratio(image_path, temp_path, *self.config[image.image_type]["ratio"])
-        sm_path = os.path.join(self.local_dir, image.small.lstrip("/"))
+        sm_path = image.local_small(self.local_dir)
         logger.debug(f"working on image for path {sm_path}")
         os.makedirs(os.path.dirname(sm_path), exist_ok=True)
         # resize and store the images locally
@@ -137,7 +147,7 @@ class ImageDownloader:
             self.config[image.image_type]["widths"]["small"],
             sm_path,
         )
-        md_path = os.path.join(self.local_dir, image.medium.lstrip("/"))
+        md_path = image.local_medium(self.local_dir)
         logger.debug(f"working on image for path {md_path}")
         os.makedirs(os.path.dirname(md_path), exist_ok=True)
         resize_image(
@@ -145,7 +155,7 @@ class ImageDownloader:
             self.config[image.image_type]["widths"]["medium"],
             md_path,
         )
-        lg_path = os.path.join(self.local_dir, image.large.lstrip("/"))
+        lg_path = image.local_large(self.local_dir)
         logger.debug(f"working on image for path {lg_path}")
         os.makedirs(os.path.dirname(lg_path), exist_ok=True)
         resize_image(

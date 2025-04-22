@@ -1,4 +1,5 @@
 from enum import Enum
+import os
 from pydantic import computed_field
 from pydantic.dataclasses import dataclass
 from datetime import timedelta
@@ -30,6 +31,15 @@ class ImageType(str, Enum):
 class Image:
     show_id: int
     image_type: ImageType
+
+    def local_small(self, local_dir: str) -> str:
+        return os.path.join(local_dir, self.small.lstrip("/"))
+
+    def local_medium(self, local_dir: str) -> str:
+        return os.path.join(local_dir, self.medium.lstrip("/"))
+
+    def local_large(self, local_dir: str) -> str:
+        return os.path.join(local_dir, self.large.lstrip("/"))
 
     @computed_field
     @cached_property
