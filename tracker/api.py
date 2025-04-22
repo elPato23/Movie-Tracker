@@ -5,18 +5,20 @@ from logging.config import dictConfig
 import sys
 
 from typing import Generic, TypeVar
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing_extensions import Literal, TypedDict
-from fastapi import APIRouter, Depends, FastAPI, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from tracker import __version__
+from tracker.query.images import ImageDownloader
 from .query.base import TrendingTimeframe
 from .query.model import Show
 from .config import APISettings
 from .query.tvshows import TVShowAdapter, TelevisionDB
 
-
+logger = logging.getLogger(__name__)
 config = APISettings()
 app = FastAPI()
 
@@ -52,7 +54,8 @@ def version() -> dict:
 
 @cache
 def tv_adapter():
-    return TVShowAdapter(TelevisionDB())
+    db = TelevisionDB()
+    return TVShowAdapter(db, ImageDownloader(db, config.local_files_dir))
 
 
 TVar = TypeVar("TVar", bound=BaseModel)
@@ -65,26 +68,53 @@ class Page(
     results: list[TVar]
 
 
+def download_images(shows: list[Show], image_downloader: ImageDownloader):
+    for show in shows:
+        if show.banner:
+            try:
+                image_downloader.download_from_image(show.banner)
+            except Exception as e:
+                logger.exception(e)
+                logger.warning(f"Failed to store banner images: {show}")
+        if show.poster:
+            try:
+                image_downloader.download_from_image(show.poster)
+            except Exception as e:
+                logger.exception(e)
+                logger.warning(f"Failed to store poster images: {show}")
+
+
 @api_router.get("/tv/trending/{timeframe}", response_model=Page[Show])
 def get_trending_tv_shows(
     timeframe: TrendingTimeframe,
+    background_tasks: BackgroundTasks,
     adapter: TVShowAdapter = Depends(tv_adapter),
 ):
     trending_shows = adapter.trending(timeframe)
+    background_tasks.add_task(download_images, trending_shows, adapter.image_downloader)
     return {"results": [asdict(show) for show in trending_shows]}
 
 
-@api_router.get("/tv/search/", response_model=Page[Show])
+@api_router.get("/tv/search", response_model=Page[Show])
 def get_trending_tv_shows(
+    background_tasks: BackgroundTasks,
     query: str = Query(),
     adapter: TVShowAdapter = Depends(tv_adapter),
 ):
     # TODO: Add pagination to the API so we can keep going with each page.
-    trending_shows = adapter.search(query)
-    return {"results": [asdict(show) for show in trending_shows]}
+    found_shows = adapter.search(query)
+    background_tasks.add_task(download_images, found_shows, adapter.image_downloader)
+    return {"results": [asdict(show) for show in found_shows]}
 
 
 app.include_router(api_router)
+app.mount(
+    "/",
+    StaticFiles(
+        directory=config.local_files_dir,
+    ),
+    name="static",
+)
 
 
 # not covering due to it locking the thread.
@@ -112,6 +142,11 @@ def main():  # pragma: no cover
         },
         "root": {"level": config.log_level, "handlers": ["stdout"]},
         "loggers": {
+            "tracker": {
+                "level": config.log_level,
+                "handlers": ["stdout"],
+                "propagate": False,
+            },
             "uvicorn": {
                 "level": config.log_level,
                 "handlers": ["stdout"],

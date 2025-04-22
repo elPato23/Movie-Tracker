@@ -3,3 +3,4 @@ click
 fastapi
 pydantic-settings
 uvicorn
+pillow
