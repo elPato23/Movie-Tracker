@@ -8,7 +8,7 @@ from typing import Generic, TypeVar
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing_extensions import Literal, TypedDict
-from fastapi import APIRouter, Depends, FastAPI, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from tracker import __version__
@@ -18,7 +18,7 @@ from .query.model import Show
 from .config import APISettings
 from .query.tvshows import TVShowAdapter, TelevisionDB
 
-
+logger = logging.getLogger(__name__)
 config = APISettings()
 app = FastAPI()
 
@@ -68,23 +68,43 @@ class Page(
     results: list[TVar]
 
 
+def download_images(shows: list[Show], image_downloader: ImageDownloader):
+    for show in shows:
+        if show.banner:
+            try:
+                image_downloader.download_from_image(show.banner)
+            except Exception as e:
+                logger.exception(e)
+                logger.warning(f"Failed to store banner images: {show}")
+        if show.poster:
+            try:
+                image_downloader.download_from_image(show.poster)
+            except Exception as e:
+                logger.exception(e)
+                logger.warning(f"Failed to store poster images: {show}")
+
+
 @api_router.get("/tv/trending/{timeframe}", response_model=Page[Show])
 def get_trending_tv_shows(
     timeframe: TrendingTimeframe,
+    background_tasks: BackgroundTasks,
     adapter: TVShowAdapter = Depends(tv_adapter),
 ):
-    trending_shows = adapter.trending(timeframe, with_images=True)
+    trending_shows = adapter.trending(timeframe)
+    background_tasks.add_task(download_images, trending_shows, adapter.image_downloader)
     return {"results": [asdict(show) for show in trending_shows]}
 
 
 @api_router.get("/tv/search", response_model=Page[Show])
 def get_trending_tv_shows(
+    background_tasks: BackgroundTasks,
     query: str = Query(),
     adapter: TVShowAdapter = Depends(tv_adapter),
 ):
     # TODO: Add pagination to the API so we can keep going with each page.
-    trending_shows = adapter.search(query, with_images=True)
-    return {"results": [asdict(show) for show in trending_shows]}
+    found_shows = adapter.search(query)
+    background_tasks.add_task(download_images, found_shows, adapter.image_downloader)
+    return {"results": [asdict(show) for show in found_shows]}
 
 
 app.include_router(api_router)

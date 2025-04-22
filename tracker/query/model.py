@@ -1,6 +1,6 @@
 from enum import Enum
 import os
-from pydantic import computed_field
+from pydantic import Field, computed_field
 from pydantic.dataclasses import dataclass
 from datetime import timedelta
 from functools import cached_property
@@ -31,6 +31,9 @@ class ImageType(str, Enum):
 class Image:
     show_id: int
     image_type: ImageType
+
+    # this is only used internally
+    api_path: str | None = Field(default=None, exclude=True)
 
     def local_small(self, local_dir: str) -> str:
         return os.path.join(local_dir, self.small.lstrip("/"))

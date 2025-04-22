@@ -156,6 +156,9 @@ class ImageDownloader:
 
             self._store_image(local_image_path, image, temp_path)
 
+    def download_from_image(self, image: Image):
+        self.download(image, image.api_path)
+
     def _store_image(self, image_path: str, image: Image, temp_path: str):
         temp_path = f"{temp_path}/sized_temp_image.png"
         logger.debug(f"working on image {temp_path}")

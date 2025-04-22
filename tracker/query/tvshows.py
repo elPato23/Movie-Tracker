@@ -136,21 +136,27 @@ class TVShowAdapter:
         series = self.tv_db.get_series(show_reference["id"])
         banner = None
         poster = None
+        if show_reference["backdrop_path"] is not None:
+            banner = Image(
+                image_type=ImageType.backdrop,
+                show_id=show_reference["id"],
+                api_path=show_reference["backdrop_path"],
+            )
+
+        if show_reference["poster_path"] is not None:
+            poster = Image(
+                image_type=ImageType.poster,
+                show_id=show_reference["id"],
+                api_path=show_reference["poster_path"],
+            )
+
         if with_images:
             if self.image_downloader is None:
                 raise ValueError("Image Downloader must be set if with_images is True")
-
-            if show_reference["backdrop_path"] is not None:
-                banner = Image(
-                    image_type=ImageType.backdrop, show_id=show_reference["id"]
-                )
-                self.image_downloader.download(banner, show_reference["backdrop_path"])
-
-            if show_reference["poster_path"] is not None:
-                poster = Image(
-                    image_type=ImageType.poster, show_id=show_reference["id"]
-                )
-                self.image_downloader.download(poster, show_reference["poster_path"])
+            if banner:
+                self.image_downloader.download_from_image(banner)
+            if poster:
+                self.image_downloader.download_from_image(poster)
 
         return Show(
             name=show_reference["name"],
