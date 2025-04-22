@@ -1,7 +1,8 @@
 from typing import TypedDict
 
 from tracker.query.base import TVMovieDB, TrendingTimeframe
-from tracker.query.model import Show, TVShowLength
+from tracker.query.images import ImageDownloader
+from tracker.query.model import Image, ImageType, Show, TVShowLength
 
 
 class TVShowReferenceDict(TypedDict):
@@ -80,7 +81,11 @@ class TelevisionDB(TVMovieDB):
         response = self.request("/genre/tv/list", params={"language": "en-US"})
         return response
 
-    def search(self, query: str, include_adult: bool = False) -> APIPage:
+    def search(
+        self,
+        query: str,
+        include_adult: bool = False,
+    ) -> APIPage:
         """Searches for TV Shows with the given name in the query
 
         Args:
@@ -116,14 +121,37 @@ class TelevisionDB(TVMovieDB):
 
 
 class TVShowAdapter:
-    def __init__(self, tv_db: TelevisionDB):
+    def __init__(self, tv_db: TelevisionDB, image_downloader: ImageDownloader = None):
+        self.image_downloader = image_downloader
         self.tv_db = tv_db
         self.genres_by_id = {
             genre["id"]: genre["name"] for genre in tv_db.get_genres()["genres"]
         }
 
-    def hydrate_tvshow(self, show_reference: TVShowReferenceDict):
+    def hydrate_tvshow(
+        self,
+        show_reference: TVShowReferenceDict,
+        with_images: bool = False,
+    ) -> Show:
         series = self.tv_db.get_series(show_reference["id"])
+        banner = None
+        poster = None
+        if with_images:
+            if self.image_downloader is None:
+                raise ValueError("Image Downloader must be set if with_images is True")
+
+            if show_reference["backdrop_path"] is not None:
+                banner = Image(
+                    image_type=ImageType.backdrop, show_id=show_reference["id"]
+                )
+                self.image_downloader.download(banner, show_reference["backdrop_path"])
+
+            if show_reference["poster_path"] is not None:
+                poster = Image(
+                    image_type=ImageType.poster, show_id=show_reference["id"]
+                )
+                self.image_downloader.download(poster, show_reference["poster_path"])
+
         return Show(
             name=show_reference["name"],
             description=show_reference["overview"],
@@ -136,20 +164,30 @@ class TVShowAdapter:
                 },
             ),
             networks=[network["name"] for network in series["networks"]],
+            banner=banner,
+            poster=poster,
         )
 
-    def search(self, query: str) -> list[Show]:
+    def search(
+        self,
+        query: str,
+        with_images: bool = False,
+    ) -> list[Show]:
         page = self.tv_db.search(query)
         items = page["results"]
         results = []
         for item in items:
-            results.append(self.hydrate_tvshow(item))
+            results.append(self.hydrate_tvshow(item, with_images=with_images))
         return results
 
-    def trending(self, timeframe: TrendingTimeframe) -> list[Show]:
+    def trending(
+        self,
+        timeframe: TrendingTimeframe,
+        with_images: bool = False,
+    ) -> list[Show]:
         page = self.tv_db.get_trending(timeframe)
         items = page["results"]
         results = []
         for item in items:
-            results.append(self.hydrate_tvshow(item))
+            results.append(self.hydrate_tvshow(item, with_images=with_images))
         return results

@@ -5,12 +5,14 @@ from logging.config import dictConfig
 import sys
 
 from typing import Generic, TypeVar
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing_extensions import Literal, TypedDict
 from fastapi import APIRouter, Depends, FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from tracker import __version__
+from tracker.query.images import ImageDownloader
 from .query.base import TrendingTimeframe
 from .query.model import Show
 from .config import APISettings
@@ -52,7 +54,8 @@ def version() -> dict:
 
 @cache
 def tv_adapter():
-    return TVShowAdapter(TelevisionDB())
+    db = TelevisionDB()
+    return TVShowAdapter(db, ImageDownloader(db, config.local_files_dir))
 
 
 TVar = TypeVar("TVar", bound=BaseModel)
@@ -70,7 +73,7 @@ def get_trending_tv_shows(
     timeframe: TrendingTimeframe,
     adapter: TVShowAdapter = Depends(tv_adapter),
 ):
-    trending_shows = adapter.trending(timeframe)
+    trending_shows = adapter.trending(timeframe, with_images=True)
     return {"results": [asdict(show) for show in trending_shows]}
 
 
@@ -80,11 +83,18 @@ def get_trending_tv_shows(
     adapter: TVShowAdapter = Depends(tv_adapter),
 ):
     # TODO: Add pagination to the API so we can keep going with each page.
-    trending_shows = adapter.search(query)
+    trending_shows = adapter.search(query, with_images=True)
     return {"results": [asdict(show) for show in trending_shows]}
 
 
 app.include_router(api_router)
+app.mount(
+    "/",
+    StaticFiles(
+        directory=config.local_files_dir,
+    ),
+    name="static",
+)
 
 
 # not covering due to it locking the thread.
@@ -112,6 +122,11 @@ def main():  # pragma: no cover
         },
         "root": {"level": config.log_level, "handlers": ["stdout"]},
         "loggers": {
+            "tracker": {
+                "level": config.log_level,
+                "handlers": ["stdout"],
+                "propagate": False,
+            },
             "uvicorn": {
                 "level": config.log_level,
                 "handlers": ["stdout"],

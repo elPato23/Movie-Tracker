@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings
 class APISettings(BaseSettings):
     moviedb_api_key: str
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "DEBUG"
+    local_files_dir: str = "files"
     hostname: str = "0.0.0.0"
     port: int = 8000
 

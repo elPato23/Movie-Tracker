@@ -30,3 +30,15 @@ class TVMovieDB:
         return requests.get(
             f"{self.base_url}{path}", headers=self.headers, params=params
         ).json()
+
+    def request_stream(self, path: str, params: dict):
+        if self.current_request_count >= 4:
+            self.current_request_count = 0
+            time.sleep(1)
+        self.current_request_count += 1
+        return requests.get(
+            f"{self.base_url}{path}",
+            headers=self.headers,
+            params=params,
+            stream=True,
+        )
