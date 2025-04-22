@@ -3,7 +3,9 @@ import os
 from tempfile import TemporaryDirectory
 import time
 
+import click
 import requests
+from tracker.config import APISettings
 from tracker.query.model import Image, ImageType
 from .base import TVMovieDB
 from PIL import Image as PILImage
@@ -67,6 +69,26 @@ def resize_image(image_path, new_width, output_path):
     logger.debug(f"Saved image to path: {output_path}")
 
 
+SIZE_CONFIG = {
+    ImageType.backdrop: {
+        "widths": {
+            "small": 576,
+            "medium": 1280,
+            "large": 1920,
+        },
+        "ratio": (16, 9),
+    },
+    ImageType.poster: {
+        "widths": {
+            "small": 360,
+            "medium": 720,
+            "large": 1080,
+        },
+        "ratio": (9, 16),
+    },
+}
+
+
 class ImageDownloader:
     def __init__(
         self,
@@ -80,6 +102,7 @@ class ImageDownloader:
         images = value["images"]
 
         self.base_url = images["base_url"]
+        # TODO(milo): Refactor this to use constant
         self.config = {
             ImageType.backdrop: {
                 "size": images["backdrop_sizes"][-1],
@@ -163,3 +186,51 @@ class ImageDownloader:
             self.config[image.image_type]["widths"]["large"],
             lg_path,
         )
+
+
+@click.command()
+@click.option(
+    "--image",
+    "-i",
+    help="path to image",
+    type=click.Path(exists=True, readable=True, dir_okay=False),
+    required=True,
+)
+@click.option(
+    "--kind",
+    "-k",
+    help="kind of image",
+    type=click.Choice(ImageType),
+    required=True,
+)
+@click.option(
+    "--id",
+    help="id of image",
+    type=click.INT,
+    default=0,
+)
+def main(
+    image: str,
+    kind: ImageType,
+    id: int = 0,
+):
+    config = APISettings()
+    with TemporaryDirectory() as temp_dir:
+        image_downloader = ImageDownloader(
+            TVMovieDB(),
+            config.local_files_dir,
+        )
+
+        image_downloader._store_image(
+            image,
+            Image(
+                show_id=id,
+                image_type=kind,
+            ),
+            temp_dir,
+        )
+    click.echo("Saved images")
+
+
+if __name__ == "__main__":
+    main()
