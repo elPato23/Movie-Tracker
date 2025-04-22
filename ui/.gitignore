@@ -21,3 +21,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+public/images/**/*_poster.png
+public/images/**/*_backdrop.png
