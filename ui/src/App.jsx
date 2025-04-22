@@ -23,7 +23,7 @@ export default function App() {
                   <li key={index} className="mr-4">
                     <Link
                       to={item.path}
-                      className="text-white hover:text-gray-300 hover:bg-gray-700 py-2 px-4 rounded"
+                      className="text-white hover:text-gray-300 hover:bg-gray-700 py-2 px-4 rounded transition duration-300 ease-in-out"
                     >
                       {item.name}
                     </Link>
